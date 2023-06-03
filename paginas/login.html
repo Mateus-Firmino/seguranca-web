@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title>Segurança na Web</title>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Segurança em páginas Web</h1>
+    </header>
+
+    <section id="login">
+
+        
+
+        <form id="form" class="form">
+
+            <div id="conteudo"></div>
+
+            <h2 id="msg">inscreva-se</h2>
+            <div id="login">
+                <input type="text" id="emailtxt" name="email" placeholder="Seu e-mail">
+                <input type="password" id="senhatxt" name="password" placeholder="Sua senha">
+                <input type="submit" name="acao" value="Entrar" onclick="entrar(); return false">
+            </div>
+        </form>
+
+    </section>
+
+    <script>
+
+        let ajax = new XMLHttpRequest()
+
+
+
+        function entrar(url) {
+
+            let loading = document.createElement('img')
+            loading.src = 'loading.gif'
+            loading.style.width = '400px'
+            let email = document.getElementById('emailtxt').value
+            let senha = document.getElementById('senhatxt').value
+            let msg = document.getElementById('msg')
+
+            document.getElementById('conteudo').appendChild(loading)
+
+            ajax.open('GET', url)
+            ajax.send()
+
+            ajax.onreadystatechange = () => {
+                msg.innerHTML = " "
+                setTimeout(() => {
+
+                    
+
+                    if (email == 'admin' && senha == 'admin') {
+                        location.href = "indice.html"
+
+                    } else {
+                        alert('Usuario e Senha incorretos')
+                    }
+
+                }, 2000)
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
